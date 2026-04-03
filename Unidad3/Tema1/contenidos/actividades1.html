@@ -4,539 +4,730 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Actividad dinámica: Pensamiento crítico</title>
+  <title>Actividad interactiva - Fuentes de información</title>
   <style>
     :root {
       --bg: #f4f7fb;
       --card: #ffffff;
+      --primary: #1f4e79;
+      --secondary: #2e86de;
+      --accent: #16a085;
+      --warning: #f39c12;
+      --danger: #c0392b;
       --text: #1f2937;
-      --muted: #6b7280;
-      --primary: #2563eb;
-      --primary-soft: #dbeafe;
-      --success: #166534;
-      --success-bg: #dcfce7;
-      --danger: #991b1b;
-      --danger-bg: #fee2e2;
+      --soft: #dbeafe;
       --border: #d1d5db;
-      --shadow: 0 10px 30px rgba(0, 0, 0, .08);
-      --radius: 18px;
+      --ok: #d1fae5;
+      --bad: #fee2e2;
     }
 
     * {
-      box-sizing: border-box;
+      box-sizing: border-box
     }
 
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+      background: var(--bg);
       color: var(--text);
       line-height: 1.5;
     }
 
-    .container {
-      max-width: 1050px;
-      margin: 0 auto;
-      padding: 24px;
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
     }
 
-    .hero {
-      background: var(--card);
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      margin-bottom: 24px;
-      border: 1px solid rgba(37, 99, 235, .08);
-    }
-
-    h1 {
-      margin: 0 0 8px;
+    header h1 {
+      margin: 0 0 10px;
       font-size: 2rem;
     }
 
-    .subtitle {
-      margin: 0;
-      color: var(--muted);
+    header p {
+      max-width: 900px;
+      margin: 0 auto;
       font-size: 1rem;
     }
 
-    .instructions {
-      margin-top: 18px;
-      background: var(--primary-soft);
-      padding: 14px 16px;
-      border-radius: 14px;
-      border-left: 5px solid var(--primary);
+    main {
+      max-width: 1100px;
+      margin: 25px auto;
+      padding: 0 16px 40px;
     }
 
-    .question-card {
+    .card {
       background: var(--card);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
+      border-radius: 16px;
+      padding: 22px;
       margin-bottom: 22px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
       border: 1px solid #e5e7eb;
     }
 
-    .question-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
+    h2 {
+      color: var(--primary);
+      margin-top: 0;
     }
 
-    .badge {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: white;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      flex-shrink: 0;
-    }
-
-    .scenario {
-      margin: 12px 0 18px;
-      color: #374151;
-    }
-
-    .answer-bank {
+    .intro-grid {
       display: grid;
-      gap: 12px;
-      margin-bottom: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 15px;
     }
 
-    .draggable {
-      background: #f9fafb;
-      border: 2px dashed var(--border);
-      border-radius: 14px;
-      padding: 14px 16px;
-      cursor: grab;
-      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-      user-select: none;
-    }
-
-    .draggable:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
-      border-color: var(--primary);
-    }
-
-    .draggable.dragging {
-      opacity: .55;
-    }
-
-    .drop-zone {
-      min-height: 84px;
-      border: 3px dashed var(--primary);
-      background: #eff6ff;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+    .mini {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--secondary);
+      border-radius: 12px;
       padding: 14px;
-      color: #1d4ed8;
-      font-weight: 600;
     }
 
-    .drop-zone.over {
-      background: #dbeafe;
-      transform: scale(1.01);
-    }
-
-    .drop-zone.filled {
-      justify-content: stretch;
-      padding: 8px;
-      min-height: unset;
-    }
-
-    .dropped-answer {
+    .video-box {
+      position: relative;
       width: 100%;
-      background: white;
-      border-radius: 12px;
-      border: 2px solid #93c5fd;
-      padding: 12px 14px;
-      text-align: left;
-      color: var(--text);
-    }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 16px;
       margin-top: 16px;
+      border: 3px solid var(--soft);
     }
 
-    button {
-      border: none;
+    .video-box iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .question-box {
+      margin-top: 16px;
+      padding: 15px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
       border-radius: 12px;
-      padding: 12px 16px;
-      font-size: 0.98rem;
-      cursor: pointer;
-      font-weight: 700;
-      transition: transform .15s ease, opacity .15s ease;
     }
 
-    button:hover {
-      transform: translateY(-1px);
-    }
-
-    button:disabled {
-      opacity: .55;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .btn-primary {
-      background: var(--primary);
+    .btn {
+      background: var(--secondary);
       color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+      transition: .2s;
     }
 
-    .btn-secondary {
-      background: #e5e7eb;
-      color: #111827;
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: .95
+    }
+
+    .btn.secondary {
+      background: var(--accent)
+    }
+
+    .btn.warning {
+      background: var(--warning)
+    }
+
+    .btn.danger {
+      background: var(--danger)
     }
 
     .feedback {
-      margin-top: 16px;
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .ok {
+      background: var(--ok);
+      color: #065f46
+    }
+
+    .bad {
+      background: var(--bad);
+      color: #991b1b
+    }
+
+    .word-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 38px);
+      gap: 4px;
+      justify-content: center;
+      margin: 18px 0;
+    }
+
+    .cell {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      transition: .15s;
+    }
+
+    .cell:hover {
+      background: #dbeafe
+    }
+
+    .cell.selected {
+      background: #93c5fd
+    }
+
+    .cell.found {
+      background: #34d399;
+      color: #083344
+    }
+
+    .cell.error {
+      background: #fca5a5
+    }
+
+    .word-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .word-tag {
+      background: #eef2ff;
+      border: 1px solid #c7d2fe;
+      color: #3730a3;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: bold;
+    }
+
+    .word-tag.found {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #166534;
+      text-decoration: line-through;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    @media(max-width:900px) {
+      .columns {
+        grid-template-columns: 1fr
+      }
+
+      .word-grid {
+        grid-template-columns: repeat(12, 28px)
+      }
+
+      .cell {
+        width: 28px;
+        height: 28px;
+        font-size: .85rem
+      }
+    }
+
+    .items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .drag-item {
+      background: #f8fafc;
+      border: 2px dashed #94a3b8;
+      padding: 12px;
+      border-radius: 10px;
+      cursor: grab;
+      min-width: 230px;
+      font-weight: bold;
+    }
+
+    .dropzones {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .zone {
+      min-height: 180px;
+      background: #f9fafb;
+      border: 2px dashed #94a3b8;
       border-radius: 14px;
-      padding: 14px 16px;
-      display: none;
+      padding: 14px;
     }
 
-    .feedback.correct {
-      display: block;
-      background: var(--success-bg);
-      color: var(--success);
-      border-left: 5px solid #22c55e;
-    }
-
-    .feedback.incorrect {
-      display: block;
-      background: var(--danger-bg);
-      color: var(--danger);
-      border-left: 5px solid #ef4444;
-    }
-
-    .result-card {
-      background: var(--card);
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      margin-top: 26px;
+    .zone h3 {
+      margin-top: 0;
+      color: var(--primary);
       text-align: center;
-      display: none;
-      border: 1px solid #e5e7eb;
+    }
+
+    .zone.over {
+      background: #eff6ff;
+      border-color: #2563eb;
+    }
+
+    .zone .placed {
+      background: #e0f2fe;
+      border: 1px solid #7dd3fc;
+      border-radius: 10px;
+      padding: 8px;
+      margin: 8px 0;
+      font-size: .95rem;
     }
 
     .score {
-      font-size: 3rem;
-      font-weight: 800;
+      font-size: 1.1rem;
+      font-weight: bold;
       color: var(--primary);
-      margin: 12px 0 6px;
+      padding: 12px;
+      background: #eff6ff;
+      border-radius: 10px;
+      margin-top: 10px;
+      text-align: center;
     }
 
-    .summary-text {
-      color: var(--muted);
-      max-width: 700px;
-      margin: 0 auto;
+    .footer-note {
+      text-align: center;
+      color: #475569;
+      font-size: .95rem;
+      margin-top: 20px;
     }
 
-    .pill {
-      display: inline-block;
-      margin-top: 14px;
-      background: var(--primary-soft);
-      color: var(--primary);
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-weight: 700;
+    .legend {
+      background: #fefce8;
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 12px;
     }
 
-    @media (max-width: 768px) {
-      .container {
-        padding: 14px;
-      }
-
-      h1 {
-        font-size: 1.55rem;
-      }
-
-      .question-card,
-      .hero,
-      .result-card {
-        padding: 18px;
-      }
+    .small {
+      font-size: .95rem;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <section class="hero">
-      <h1>Actividad dinámica: Pensamiento crítico</h1>
-      <p class="subtitle">Arrastra la alternativa que represente la mejor decisión desde el pensamiento crítico. Cada
-        pregunta tiene una única respuesta correcta.</p>
-      <div class="instructions">
-        <strong>Instrucciones:</strong> lee cada situación, arrastra una opción al espacio de respuesta y luego pulsa
-        <em>Verificar</em>. Al final verás tu porcentaje de aciertos.
+  <header>
+    <h1>Actividad interactiva: Fuentes de información</h1>
+    <p>
+      Aprende a identificar, clasificar y evaluar fuentes de información útiles para la actualización tecnológica
+      mediante video, sopa de letras y una actividad práctica de arrastrar y soltar.
+    </p>
+  </header>
+
+  <main>
+
+    <section class="card">
+      <h2>1. Contexto de aprendizaje</h2>
+      <p>
+        Las fuentes de información permiten adquirir, ampliar y actualizar conocimientos. En el campo tecnológico,
+        son esenciales para conocer herramientas, lenguajes, metodologías, estándares, investigaciones y soluciones
+        a problemas reales.
+      </p>
+
+      <div class="intro-grid">
+        <div class="mini">
+          <strong>Fuentes primarias</strong>
+          <p>Presentan información original: artículos científicos, estándares, repositorios y documentación oficial.
+          </p>
+        </div>
+        <div class="mini">
+          <strong>Fuentes secundarias</strong>
+          <p>Interpretan o explican fuentes primarias: libros, manuales, blogs especializados y comparativas.</p>
+        </div>
+        <div class="mini">
+          <strong>Fuentes terciarias</strong>
+          <p>Organizan y resumen información: bases de datos, enciclopedias técnicas y portales educativos.</p>
+        </div>
+        <div class="mini">
+          <strong>Fuentes emergentes</strong>
+          <p>Incluyen comunidades, foros, videos, podcasts y redes profesionales con información dinámica y actual.</p>
+        </div>
       </div>
     </section>
 
-    <div id="questions"></div>
+    <section class="card">
+      <h2>2. Video de aprendizaje</h2>
+      <p>
+        Observa el siguiente video y luego responde la pregunta de comprensión.
+      </p>
 
-    <section id="results" class="result-card">
-      <h2>Resultado final</h2>
-      <div id="score" class="score">0%</div>
-      <p id="scoreText" class="summary-text"></p>
-      <div id="scorePill" class="pill"></div>
-      <div class="actions" style="justify-content:center; margin-top:18px;">
-        <button class="btn-secondary" id="restartBtn">Reiniciar actividad</button>
+      <div class="video-box">
+        <iframe src="https://www.youtube.com/embed/pUFdoYsAkoc" title="Video de alfabetización informacional"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="question-box">
+        <p><strong>Pregunta de comprensión:</strong> ¿Por qué es importante evaluar la calidad de una fuente antes de
+          usarla?</p>
+        <label><input type="radio" name="videoQ" value="a"> A. Porque toda la información de internet tiene la misma
+          validez.</label><br>
+        <label><input type="radio" name="videoQ" value="b"> B. Porque permite decidir si la información es confiable,
+          actual y pertinente.</label><br>
+        <label><input type="radio" name="videoQ" value="c"> C. Porque solo deben utilizarse videos y no documentos
+          escritos.</label><br>
+        <button class="btn" onclick="checkVideoQuestion()">Verificar respuesta</button>
+        <div id="videoFeedback"></div>
       </div>
     </section>
-  </div>
+
+    <section class="card">
+      <h2>3. Sopa de letras interactiva</h2>
+      <p>
+        Busca estas palabras clave relacionadas con el tema. Haz clic sobre las letras de una palabra y luego pulsa
+        <strong>“Validar selección”</strong>.
+      </p>
+
+      <div class="legend small">
+        <strong>Instrucción:</strong> Las palabras están ubicadas en horizontal o vertical. Si te equivocas, puedes
+        limpiar la selección.
+      </div>
+
+      <div class="word-list" id="wordList"></div>
+      <div class="word-grid" id="wordGrid"></div>
+
+      <button class="btn secondary" onclick="validateSelection()">Validar selección</button>
+      <button class="btn warning" onclick="clearSelection()">Limpiar selección</button>
+
+      <div id="wordFeedback"></div>
+    </section>
+
+    <section class="card">
+      <h2>4. Actividad de arrastrar y soltar</h2>
+      <p>
+        Arrastra cada ejemplo hacia la categoría correcta de fuente de información.
+      </p>
+
+      <div class="items" id="dragItems">
+        <div class="drag-item" draggable="true" data-type="primaria">Documentación oficial de Python</div>
+        <div class="drag-item" draggable="true" data-type="primaria">Repositorio original de un proyecto en GitHub</div>
+        <div class="drag-item" draggable="true" data-type="secundaria">Libro académico sobre ingeniería de software
+        </div>
+        <div class="drag-item" draggable="true" data-type="secundaria">Blog técnico especializado con análisis
+          comparativo</div>
+        <div class="drag-item" draggable="true" data-type="terciaria">Base de datos IEEE Xplore</div>
+        <div class="drag-item" draggable="true" data-type="terciaria">Portal educativo que reúne cursos y tutoriales
+        </div>
+        <div class="drag-item" draggable="true" data-type="emergente">Foro Stack Overflow</div>
+        <div class="drag-item" draggable="true" data-type="emergente">Canal de YouTube con tutoriales técnicos</div>
+      </div>
+
+      <div class="dropzones">
+        <div class="zone" data-zone="primaria">
+          <h3>Fuentes primarias</h3>
+        </div>
+        <div class="zone" data-zone="secundaria">
+          <h3>Fuentes secundarias</h3>
+        </div>
+        <div class="zone" data-zone="terciaria">
+          <h3>Fuentes terciarias</h3>
+        </div>
+        <div class="zone" data-zone="emergente">
+          <h3>Fuentes emergentes</h3>
+        </div>
+      </div>
+
+      <button class="btn" onclick="checkDragDrop()">Revisar actividad</button>
+      <button class="btn danger" onclick="resetDragDrop()">Reiniciar</button>
+
+      <div id="dragFeedback"></div>
+    </section>
+
+    <section class="card">
+      <h2>5. Cierre y autoevaluación</h2>
+      <p>Completa esta reflexión final:</p>
+      <ol>
+        <li>¿Qué tipo de fuente usarías para aprender una tecnología nueva desde su base?</li>
+        <li>¿Cuál criterio consideras más importante al evaluar una fuente: autoridad, actualidad, relevancia u
+          objetividad?</li>
+        <li>¿Qué fuente usarías para resolver rápidamente un error de programación real?</li>
+      </ol>
+
+      <textarea style="width:100%;min-height:140px;padding:12px;border-radius:10px;border:1px solid #cbd5e1;"
+        placeholder="Escribe aquí tus respuestas..."></textarea>
+
+      <div class="score" id="finalScore">
+        Puntaje actual: 0 / 3 actividades completadas
+      </div>
+    </section>
+
+    <p class="footer-note">
+      Actividad diseñada para fortalecer el aprendizaje autónomo, la clasificación de fuentes y la evaluación crítica de
+      la información.
+    </p>
+  </main>
 
   <script>
-    const questions = [
-      {
-        id: 1,
-        title: 'Pregunta 1',
-        prompt: 'Un estudiante de programación web encuentra dos tutoriales que explican cómo implementar autenticación de usuarios. Uno es un blog reciente con ejemplos prácticos, y otro es documentación oficial más técnica pero menos actualizada. El estudiante necesita elegir cuál utilizar para su proyecto. ¿Cuál sería la acción más adecuada desde el pensamiento crítico?',
-        options: [
-          { id: '1A', label: 'A', text: 'Elegir el blog reciente porque presenta ejemplos prácticos que facilitan la implementación inmediata.' },
-          { id: '1B', label: 'B', text: 'Utilizar únicamente la documentación oficial por ser una fuente institucional confiable.' },
-          { id: '1C', label: 'C', text: 'Analizar ambas fuentes, comparar la validez, actualidad y aplicabilidad de la información, y decidir cuál o cuáles integrar según el contexto del proyecto.' }
-        ],
-        correct: '1C',
-        feedbackCorrect: 'Correcto. El pensamiento crítico implica contrastar fuentes, valorar su confiabilidad, revisar su actualidad y decidir con base en el contexto real del proyecto.',
-        feedbackIncorrect: 'No es la mejor opción. Desde el pensamiento crítico no basta con elegir lo más práctico o lo institucional de forma automática; es necesario evaluar, comparar e integrar la información según su validez, actualidad y pertinencia.'
-      },
-      {
-        id: 2,
-        title: 'Pregunta 2',
-        prompt: 'Durante el desarrollo de una aplicación, un estudiante identifica que su solución funciona, pero consume muchos recursos. Encuentra en un foro una alternativa que parece más eficiente, aunque no comprende completamente su funcionamiento. ¿Qué debería hacer el estudiante para actuar críticamente?',
-        options: [
-          { id: '2A', label: 'A', text: 'Implementar la nueva solución de inmediato, ya que mejora el rendimiento del programa.' },
-          { id: '2B', label: 'B', text: 'Mantener su solución actual porque ya funciona correctamente, evitando riesgos innecesarios.' },
-          { id: '2C', label: 'C', text: 'Analizar la nueva alternativa, comprender su lógica, evaluar ventajas y posibles limitaciones antes de decidir si implementarla.' }
-        ],
-        correct: '2C',
-        feedbackCorrect: 'Correcto. Pensar críticamente exige comprender antes de aplicar, valorar ventajas y riesgos, y decidir de forma fundamentada, no impulsiva.',
-        feedbackIncorrect: 'No es la respuesta adecuada. El pensamiento crítico requiere comprender la alternativa y evaluar sus implicaciones antes de adoptarla o descartarla.'
-      },
-      {
-        id: 3,
-        title: 'Pregunta 3',
-        prompt: 'En un equipo de trabajo, dos estudiantes proponen diferentes tecnologías para desarrollar un proyecto web. Ambos presentan argumentos válidos, pero con enfoques distintos. ¿Cuál sería la mejor actuación desde el pensamiento crítico?',
-        options: [
-          { id: '3A', label: 'A', text: 'Elegir la tecnología más conocida para evitar complicaciones durante el desarrollo.' },
-          { id: '3B', label: 'B', text: 'Defender la propia propuesta sin considerar la otra opción, priorizando la coherencia del trabajo individual.' },
-          { id: '3C', label: 'C', text: 'Comparar ambas propuestas considerando criterios como contexto, requerimientos del proyecto y evidencia técnica, para tomar una decisión fundamentada.' }
-        ],
-        correct: '3C',
-        feedbackCorrect: 'Correcto. El pensamiento crítico valora la evidencia, el contexto y los requerimientos del problema antes de elegir una opción.',
-        feedbackIncorrect: 'No es la mejor respuesta. Actuar críticamente implica analizar ambas propuestas con criterios técnicos y contextuales, no decidir por costumbre o por preferencia personal.'
-      }
-    ];
+    /* -------------------------
+       VIDEO
+    -------------------------- */
+    let completedVideo = false;
+    let completedWord = false;
+    let completedDrag = false;
 
-    const state = {};
-    const questionsContainer = document.getElementById('questions');
-    const resultsSection = document.getElementById('results');
-
-    function shuffle(arr) {
-      return [...arr].sort(() => Math.random() - 0.5);
+    function updateFinalScore() {
+      let total = 0;
+      if (completedVideo) total++;
+      if (completedWord) total++;
+      if (completedDrag) total++;
+      document.getElementById("finalScore").textContent = `Puntaje actual: ${total} / 3 actividades completadas`;
     }
 
-    function init() {
-      questionsContainer.innerHTML = '';
-      resultsSection.style.display = 'none';
+    function checkVideoQuestion() {
+      const answer = document.querySelector('input[name="videoQ"]:checked');
+      const feedback = document.getElementById("videoFeedback");
 
-      questions.forEach(q => {
-        state[q.id] = { selected: null, checked: false, correct: false };
-
-        const card = document.createElement('section');
-        card.className = 'question-card';
-        card.id = `question-${q.id}`;
-
-        const shuffled = shuffle(q.options);
-
-        card.innerHTML = `
-          <div class="question-title">
-            <span class="badge">${q.id}</span>
-            <h2 style="margin:0; font-size:1.2rem;">${q.title}</h2>
-          </div>
-          <div class="scenario">${q.prompt}</div>
-          <div class="answer-bank" id="bank-${q.id}"></div>
-          <div class="drop-zone" id="drop-${q.id}" aria-label="Zona para soltar respuesta" tabindex="0">
-            Arrastra aquí la respuesta correcta
-          </div>
-          <div class="actions">
-            <button class="btn-primary" id="check-${q.id}" disabled>Verificar</button>
-            <button class="btn-secondary" id="reset-${q.id}">Reiniciar pregunta</button>
-          </div>
-          <div class="feedback" id="feedback-${q.id}"></div>
-        `;
-
-        questionsContainer.appendChild(card);
-
-        const bank = card.querySelector(`#bank-${q.id}`);
-        shuffled.forEach(opt => {
-          const option = document.createElement('div');
-          option.className = 'draggable';
-          option.draggable = true;
-          option.dataset.question = q.id;
-          option.dataset.optionId = opt.id;
-          option.innerHTML = `<strong>${opt.label}.</strong> ${opt.text}`;
-          bank.appendChild(option);
-        });
-
-        setupDragAndDrop(q.id);
-        card.querySelector(`#check-${q.id}`).addEventListener('click', () => checkAnswer(q.id));
-        card.querySelector(`#reset-${q.id}`).addEventListener('click', () => resetQuestion(q.id));
-      });
-
-      document.getElementById('restartBtn').addEventListener('click', init);
-    }
-
-    function setupDragAndDrop(questionId) {
-      const card = document.getElementById(`question-${questionId}`);
-      const draggables = card.querySelectorAll('.draggable');
-      const dropZone = card.querySelector(`#drop-${questionId}`);
-
-      draggables.forEach(item => {
-        item.addEventListener('dragstart', e => {
-          if (state[questionId].checked) {
-            e.preventDefault();
-            return;
-          }
-          item.classList.add('dragging');
-          e.dataTransfer.setData('text/plain', JSON.stringify({
-            questionId,
-            optionId: item.dataset.optionId,
-            html: item.innerHTML
-          }));
-        });
-
-        item.addEventListener('dragend', () => item.classList.remove('dragging'));
-      });
-
-      dropZone.addEventListener('dragover', e => {
-        if (state[questionId].checked) return;
-        e.preventDefault();
-        dropZone.classList.add('over');
-      });
-
-      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('over'));
-
-      dropZone.addEventListener('drop', e => {
-        if (state[questionId].checked) return;
-        e.preventDefault();
-        dropZone.classList.remove('over');
-        const data = JSON.parse(e.dataTransfer.getData('text/plain'));
-        if (Number(data.questionId) !== Number(questionId)) return;
-
-        state[questionId].selected = data.optionId;
-        renderDropped(questionId, data.optionId, data.html);
-      });
-    }
-
-    function renderDropped(questionId, optionId, html) {
-      const card = document.getElementById(`question-${questionId}`);
-      const dropZone = card.querySelector(`#drop-${questionId}`);
-      const bank = card.querySelector(`#bank-${questionId}`);
-      const button = card.querySelector(`#check-${questionId}`);
-
-      Array.from(bank.children).forEach(child => {
-        child.style.opacity = child.dataset.optionId === optionId ? '0.35' : '1';
-      });
-
-      dropZone.classList.add('filled');
-      dropZone.innerHTML = `<div class="dropped-answer">${html}</div>`;
-      button.disabled = false;
-    }
-
-    function resetQuestion(questionId) {
-      const card = document.getElementById(`question-${questionId}`);
-      const q = questions.find(item => item.id === questionId);
-      const dropZone = card.querySelector(`#drop-${questionId}`);
-      const feedback = card.querySelector(`#feedback-${questionId}`);
-      const button = card.querySelector(`#check-${questionId}`);
-      const bank = card.querySelector(`#bank-${questionId}`);
-
-      state[questionId] = { selected: null, checked: false, correct: false };
-
-      feedback.className = 'feedback';
-      feedback.style.display = 'none';
-      feedback.textContent = '';
-      button.disabled = true;
-      dropZone.className = 'drop-zone';
-      dropZone.innerHTML = 'Arrastra aquí la respuesta correcta';
-
-      bank.innerHTML = '';
-      shuffle(q.options).forEach(opt => {
-        const option = document.createElement('div');
-        option.className = 'draggable';
-        option.draggable = true;
-        option.dataset.question = q.id;
-        option.dataset.optionId = opt.id;
-        option.innerHTML = `<strong>${opt.label}.</strong> ${opt.text}`;
-        bank.appendChild(option);
-      });
-
-      setupDragAndDrop(questionId);
-      updateResultsVisibility();
-    }
-
-    function checkAnswer(questionId) {
-      const q = questions.find(item => item.id === questionId);
-      const card = document.getElementById(`question-${questionId}`);
-      const feedback = card.querySelector(`#feedback-${questionId}`);
-
-      if (!state[questionId].selected) return;
-
-      state[questionId].checked = true;
-      state[questionId].correct = state[questionId].selected === q.correct;
-
-      feedback.className = `feedback ${state[questionId].correct ? 'correct' : 'incorrect'}`;
-      feedback.textContent = state[questionId].correct ? q.feedbackCorrect : q.feedbackIncorrect;
-      feedback.style.display = 'block';
-
-      updateResultsVisibility();
-    }
-
-    function updateResultsVisibility() {
-      const allChecked = questions.every(q => state[q.id] && state[q.id].checked);
-      if (!allChecked) {
-        resultsSection.style.display = 'none';
+      if (!answer) {
+        feedback.innerHTML = `<div class="feedback bad">Debes seleccionar una opción.</div>`;
         return;
       }
 
-      const correctCount = questions.filter(q => state[q.id].correct).length;
-      const percentage = Math.round((correctCount / questions.length) * 100);
-      const scoreEl = document.getElementById('score');
-      const scoreText = document.getElementById('scoreText');
-      const scorePill = document.getElementById('scorePill');
-
-      scoreEl.textContent = `${percentage}%`;
-      scorePill.textContent = `${correctCount} de ${questions.length} respuestas correctas`;
-
-      let message = '';
-      if (percentage === 100) {
-        message = 'Excelente. Estás evaluando la información, contrastando evidencias y tomando decisiones fundamentadas, que son rasgos centrales del pensamiento crítico.';
-      } else if (percentage >= 67) {
-        message = 'Buen trabajo. Reconoces varios elementos del pensamiento crítico, aunque todavía puedes fortalecer la evaluación comparativa y la toma de decisiones con mayor fundamento.';
+      if (answer.value === "b") {
+        feedback.innerHTML = `<div class="feedback ok">¡Correcto! Evaluar una fuente permite determinar si es confiable, actual y pertinente.</div>`;
+        completedVideo = true;
       } else {
-        message = 'Sigue practicando. El pensamiento crítico implica analizar información, comprender alternativas, contrastar evidencias y decidir según el contexto, no por impulso o costumbre.';
+        feedback.innerHTML = `<div class="feedback bad">Respuesta incorrecta. La evaluación de una fuente permite establecer su confiabilidad, vigencia y utilidad para una necesidad concreta.</div>`;
       }
-
-      scoreText.textContent = message;
-      resultsSection.style.display = 'block';
-      resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      updateFinalScore();
     }
 
-    init();
+    /* -------------------------
+       SOPA DE LETRAS
+    -------------------------- */
+    const gridData = [
+      ['A', 'U', 'T', 'O', 'R', 'I', 'D', 'A', 'D', 'X', 'P', 'Q'],
+      ['B', 'M', 'N', 'L', 'S', 'K', 'P', 'O', 'R', 'T', 'A', 'L'],
+      ['R', 'E', 'L', 'E', 'V', 'A', 'N', 'C', 'I', 'A', 'H', 'T'],
+      ['I', 'F', 'G', 'H', 'J', 'D', 'O', 'C', 'S', 'Z', 'Q', 'Y'],
+      ['E', 'M', 'E', 'R', 'G', 'E', 'N', 'T', 'E', 'S', 'L', 'U'],
+      ['T', 'P', 'R', 'I', 'M', 'A', 'R', 'I', 'A', 'S', 'E', 'I'],
+      ['E', 'W', 'E', 'K', 'O', 'B', 'J', 'E', 'T', 'I', 'V', 'O'],
+      ['R', 'Q', 'T', 'E', 'R', 'C', 'I', 'A', 'R', 'I', 'A', 'S'],
+      ['I', 'S', 'A', 'C', 'T', 'U', 'A', 'L', 'I', 'D', 'A', 'D'],
+      ['O', 'F', 'M', 'G', 'I', 'T', 'H', 'U', 'B', 'R', 'V', 'N'],
+      ['S', 'E', 'C', 'U', 'N', 'D', 'A', 'R', 'I', 'A', 'S', 'T'],
+      ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'L', 'K']
+    ];
+
+    const words = [
+      "AUTORIDAD",
+      "RELEVANCIA",
+      "ACTUALIDAD",
+      "OBJETIVO",
+      "PRIMARIAS",
+      "SECUNDARIAS",
+      "TERCIARIAS",
+      "EMERGENTES",
+      "GITHUB",
+      "PORTAL"
+    ];
+
+    const foundWords = new Set();
+    let selectedCells = [];
+
+    const wordGrid = document.getElementById("wordGrid");
+    const wordList = document.getElementById("wordList");
+
+    function renderWordList() {
+      wordList.innerHTML = "";
+      words.forEach(word => {
+        const tag = document.createElement("div");
+        tag.className = "word-tag" + (foundWords.has(word) ? " found" : "");
+        tag.id = "tag-" + word;
+        tag.textContent = word;
+        wordList.appendChild(tag);
+      });
+    }
+
+    function renderGrid() {
+      wordGrid.innerHTML = "";
+      for (let r = 0; r < gridData.length; r++) {
+        for (let c = 0; c < gridData[r].length; c++) {
+          const cell = document.createElement("div");
+          cell.className = "cell";
+          cell.textContent = gridData[r][c];
+          cell.dataset.row = r;
+          cell.dataset.col = c;
+          cell.addEventListener("click", () => toggleCell(cell));
+          wordGrid.appendChild(cell);
+        }
+      }
+    }
+
+    function toggleCell(cell) {
+      if (cell.classList.contains("found")) return;
+      const index = selectedCells.indexOf(cell);
+      if (index >= 0) {
+        selectedCells.splice(index, 1);
+        cell.classList.remove("selected");
+      } else {
+        selectedCells.push(cell);
+        cell.classList.add("selected");
+      }
+    }
+
+    function clearSelection() {
+      selectedCells.forEach(cell => cell.classList.remove("selected", "error"));
+      selectedCells = [];
+      document.getElementById("wordFeedback").innerHTML = "";
+    }
+
+    function validateSelection() {
+      const feedback = document.getElementById("wordFeedback");
+      if (selectedCells.length === 0) {
+        feedback.innerHTML = `<div class="feedback bad">Selecciona letras antes de validar.</div>`;
+        return;
+      }
+
+      const sorted = [...selectedCells].sort((a, b) => {
+        const ra = parseInt(a.dataset.row), rb = parseInt(b.dataset.row);
+        const ca = parseInt(a.dataset.col), cb = parseInt(b.dataset.col);
+
+        if (ra === rb) return ca - cb;
+        if (ca === cb) return ra - rb;
+        return 0;
+      });
+
+      const forwardWord = sorted.map(cell => cell.textContent).join("");
+      const backwardWord = [...forwardWord].reverse().join("");
+
+      const matchedWord = words.find(w => w === forwardWord || w === backwardWord);
+
+      if (matchedWord && !foundWords.has(matchedWord)) {
+        foundWords.add(matchedWord);
+        sorted.forEach(cell => {
+          cell.classList.remove("selected", "error");
+          cell.classList.add("found");
+        });
+        selectedCells = [];
+        document.getElementById("tag-" + matchedWord)?.classList.add("found");
+        feedback.innerHTML = `<div class="feedback ok">¡Muy bien! Encontraste la palabra <strong>${matchedWord}</strong>.</div>`;
+      } else if (foundWords.has(forwardWord) || foundWords.has(backwardWord)) {
+        feedback.innerHTML = `<div class="feedback bad">Esa palabra ya fue encontrada.</div>`;
+        clearSelection();
+      } else {
+        selectedCells.forEach(cell => cell.classList.add("error"));
+        feedback.innerHTML = `<div class="feedback bad">La selección no coincide con una palabra válida de la lista.</div>`;
+        setTimeout(() => {
+          selectedCells.forEach(cell => cell.classList.remove("error"));
+        }, 700);
+      }
+
+      if (foundWords.size === words.length) {
+        completedWord = true;
+        feedback.innerHTML += `<div class="feedback ok">¡Excelente! Completaste toda la sopa de letras.</div>`;
+      }
+
+      renderWordList();
+      updateFinalScore();
+    }
+
+    renderGrid();
+    renderWordList();
+
+    /* -------------------------
+       DRAG AND DROP
+    -------------------------- */
+    let draggedElement = null;
+
+    const dragItems = document.querySelectorAll(".drag-item");
+    const zones = document.querySelectorAll(".zone");
+
+    dragItems.forEach(item => {
+      item.addEventListener("dragstart", e => {
+        draggedElement = item;
+        setTimeout(() => item.style.opacity = "0.4", 0);
+      });
+
+      item.addEventListener("dragend", () => {
+        item.style.opacity = "1";
+      });
+    });
+
+    zones.forEach(zone => {
+      zone.addEventListener("dragover", e => {
+        e.preventDefault();
+        zone.classList.add("over");
+      });
+
+      zone.addEventListener("dragleave", () => {
+        zone.classList.remove("over");
+      });
+
+      zone.addEventListener("drop", e => {
+        e.preventDefault();
+        zone.classList.remove("over");
+        if (draggedElement) {
+          zone.appendChild(draggedElement);
+          draggedElement.classList.add("placed");
+        }
+      });
+    });
+
+    function checkDragDrop() {
+      const feedback = document.getElementById("dragFeedback");
+      let correct = 0;
+      let total = 0;
+
+      zones.forEach(zone => {
+        const expected = zone.dataset.zone;
+        const items = zone.querySelectorAll(".drag-item");
+        items.forEach(item => {
+          total++;
+          if (item.dataset.type === expected) correct++;
+        });
+      });
+
+      if (total < 8) {
+        feedback.innerHTML = `<div class="feedback bad">Aún faltan elementos por clasificar. Debes ubicar los 8 ejemplos.</div>`;
+        return;
+      }
+
+      if (correct === 8) {
+        feedback.innerHTML = `<div class="feedback ok">¡Excelente! Clasificaste correctamente todas las fuentes de información.</div>`;
+        completedDrag = true;
+      } else {
+        feedback.innerHTML = `<div class="feedback bad">Obtuviste ${correct} de 8 correctas. Revisa especialmente qué ejemplos corresponden a información original, explicativa, de recopilación o comunitaria.</div>`;
+      }
+      updateFinalScore();
+    }
+
+    function resetDragDrop() {
+      const container = document.getElementById("dragItems");
+      const allItems = document.querySelectorAll(".drag-item");
+      allItems.forEach(item => {
+        container.appendChild(item);
+        item.classList.remove("placed");
+      });
+      document.getElementById("dragFeedback").innerHTML = "";
+      completedDrag = false;
+      updateFinalScore();
+    }
   </script>
 </body>
 
