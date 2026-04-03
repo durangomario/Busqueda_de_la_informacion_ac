@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actividad: Estrategias para la reflexión continua</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #f4f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #1e3a8a;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 28px;
+      font-size: 1rem;
+    }
+
+    .question {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+
+    .question h2 {
+      margin-top: 0;
+      color: #0f172a;
+      font-size: 1.2rem;
+    }
+
+    .statement {
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .options,
+    .dropzone-area {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 16px;
+      min-height: 220px;
+      border: 2px dashed #cbd5e1;
+    }
+
+    .label {
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #334155;
+    }
+
+    .option {
+      background: #dbeafe;
+      border: 1px solid #93c5fd;
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      cursor: grab;
+      line-height: 1.5;
+      user-select: none;
+    }
+
+    .option:active {
+      cursor: grabbing;
+    }
+
+    .dropzone {
+      background: #ffffff;
+      border: 2px dashed #94a3b8;
+      border-radius: 10px;
+      padding: 14px;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #64748b;
+      transition: 0.2s;
+    }
+
+    .dropzone.over {
+      background: #eff6ff;
+      border-color: #2563eb;
+    }
+
+    .dropzone.correct-filled,
+    .dropzone.incorrect-filled {
+      justify-content: flex-start;
+      text-align: left;
+      color: #1f2937;
+    }
+
+    .feedback {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 10px;
+      display: none;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .feedback.correct {
+      background: #dcfce7;
+      border: 1px solid #86efac;
+      color: #166534;
+      display: block;
+    }
+
+    .feedback.incorrect {
+      background: #fee2e2;
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+      display: block;
+    }
+
+    .buttons {
+      margin-top: 16px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: bold;
+    }
+
+    .check-btn {
+      background: #2563eb;
+      color: white;
+    }
+
+    .reset-btn {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .score-box {
+      position: sticky;
+      top: 12px;
+      background: #1e3a8a;
+      color: #fff;
+      padding: 14px 18px;
+      border-radius: 14px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(30, 58, 138, 0.2);
+    }
+
+    @media (max-width: 800px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Actividad de arrastrar y pegar</h1>
+    <p class="intro">
+      <strong>Tema 2: Estrategias para la reflexión continua</strong><br>
+      Arrastra la alternativa correcta hacia cada espacio de respuesta. Luego presiona <em>Verificar respuesta</em>.
+    </p>
+
+    <div class="score-box">
+      Progreso: <span id="score">0</span> / 3 respuestas correctas
+    </div>
+
+    <div class="question" data-question="1" data-correct="q1b">
+      <h2>Pregunta 1</h2>
+      <div class="statement">
+        Un estudiante obtiene un resultado bajo en una actividad de programación. Decide revisar su trabajo para
+        entender qué ocurrió.<br><br>
+        <strong>¿Cuál de las siguientes acciones evidencia una reflexión continua adecuada?</strong>
+      </div>
+      <div class="layout">
+        <div class="options" id="options-q1">
+          <div class="label">Opciones</div>
+          <div class="option" draggable="true" id="q1a">A. Revisar únicamente la calificación obtenida y enfocarse en
+            mejorar en la siguiente actividad.</div>
+          <div class="option" draggable="true" id="q1b">B. Identificar los errores cometidos, analizar las causas y
+            definir acciones concretas para mejorar en futuras actividades.</div>
+          <div class="option" draggable="true" id="q1c">C. Repetir la actividad utilizando más tiempo, sin modificar la
+            estrategia utilizada inicialmente.</div>
+        </div>
+        <div class="dropzone-area">
+          <div class="label">Respuesta</div>
+          <div class="dropzone" data-drop="1">Suelta aquí la respuesta correcta</div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="check-btn" onclick="checkAnswer(1)">Verificar respuesta</button>
+        <button class="reset-btn" onclick="resetQuestion(1)">Reiniciar</button>
+      </div>
+      <div class="feedback" id="feedback-1"></div>
+    </div>
+
+    <div class="question" data-question="2" data-correct="q2b">
+      <h2>Pregunta 2</h2>
+      <div class="statement">
+        Durante el desarrollo de un proyecto, un estudiante nota que no está comprendiendo completamente algunos
+        conceptos, aunque logra avanzar siguiendo tutoriales.<br><br>
+        <strong>¿Cómo debería actuar desde la reflexión continua?</strong>
+      </div>
+      <div class="layout">
+        <div class="options" id="options-q2">
+          <div class="label">Opciones</div>
+          <div class="option" draggable="true" id="q2a">A. Continuar con el desarrollo del proyecto, confiando en que la
+            práctica permitirá comprender los conceptos más adelante.</div>
+          <div class="option" draggable="true" id="q2b">B. Detenerse a analizar su nivel de comprensión, identificar
+            vacíos conceptuales y buscar recursos adicionales para fortalecerlos.</div>
+          <div class="option" draggable="true" id="q2c">C. Cambiar de tema o herramienta para evitar dificultades y
+            avanzar más rápidamente en el proyecto.</div>
+        </div>
+        <div class="dropzone-area">
+          <div class="label">Respuesta</div>
+          <div class="dropzone" data-drop="2">Suelta aquí la respuesta correcta</div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="check-btn" onclick="checkAnswer(2)">Verificar respuesta</button>
+        <button class="reset-btn" onclick="resetQuestion(2)">Reiniciar</button>
+      </div>
+      <div class="feedback" id="feedback-2"></div>
+    </div>
+
+    <div class="question" data-question="3" data-correct="q3b">
+      <h2>Pregunta 3</h2>
+      <div class="statement">
+        Al finalizar una actividad grupal, un estudiante reflexiona sobre su desempeño dentro del equipo.<br><br>
+        <strong>¿Cuál de las siguientes acciones refleja un proceso adecuado de reflexión continua?</strong>
+      </div>
+      <div class="layout">
+        <div class="options" id="options-q3">
+          <div class="label">Opciones</div>
+          <div class="option" draggable="true" id="q3a">A. Considerar que el resultado del grupo es suficiente sin
+            analizar el aporte individual realizado.</div>
+          <div class="option" draggable="true" id="q3b">B. Evaluar su participación, identificar fortalezas y aspectos a
+            mejorar, y proponer acciones para mejorar su desempeño en futuros trabajos colaborativos.</div>
+          <div class="option" draggable="true" id="q3c">C. Comparar su desempeño con el de otros compañeros para
+            determinar si su participación fue adecuada.</div>
+        </div>
+        <div class="dropzone-area">
+          <div class="label">Respuesta</div>
+          <div class="dropzone" data-drop="3">Suelta aquí la respuesta correcta</div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="check-btn" onclick="checkAnswer(3)">Verificar respuesta</button>
+        <button class="reset-btn" onclick="resetQuestion(3)">Reiniciar</button>
+      </div>
+      <div class="feedback" id="feedback-3"></div>
+    </div>
+  </div>
+
+  <script>
+    let draggedElement = null;
+
+    const feedbackTexts = {
+      1: {
+        correct: '¡Correcto! La reflexión continua implica identificar errores, analizar por qué ocurrieron y establecer acciones concretas de mejora. No se trata solo de mirar la nota, sino de aprender del proceso.',
+        incorrect: 'Respuesta incorrecta. La reflexión continua exige analizar el desempeño, reconocer las causas de los errores y planear mejoras específicas. Solo mirar la calificación o repetir sin cambiar la estrategia no garantiza aprendizaje.'
+      },
+      2: {
+        correct: '¡Correcto! Reflexionar continuamente significa detenerse a evaluar el propio nivel de comprensión, reconocer vacíos y tomar medidas para fortalecer el aprendizaje con nuevos recursos o estrategias.',
+        incorrect: 'Respuesta incorrecta. Seguir avanzando sin comprender plenamente o evitar la dificultad no favorece la reflexión continua. Lo adecuado es analizar la comprensión real y buscar apoyo para superar los vacíos conceptuales.'
+      },
+      3: {
+        correct: '¡Correcto! La reflexión continua en el trabajo colaborativo implica revisar el aporte personal, reconocer fortalezas, identificar aspectos por mejorar y proyectar acciones para futuras experiencias.',
+        incorrect: 'Respuesta incorrecta. La reflexión continua no consiste solo en aceptar el resultado grupal ni en compararse con otros. Lo central es analizar críticamente la propia participación para mejorar en próximos trabajos.'
+      }
+    };
+
+    function updateDraggables() {
+      document.querySelectorAll('.option').forEach(option => {
+        option.addEventListener('dragstart', (e) => {
+          draggedElement = option;
+          e.dataTransfer.setData('text/plain', option.id);
+        });
+      });
+    }
+
+    document.querySelectorAll('.dropzone').forEach(zone => {
+      zone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        zone.classList.add('over');
+      });
+
+      zone.addEventListener('dragleave', () => {
+        zone.classList.remove('over');
+      });
+
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('over');
+
+        const droppedId = e.dataTransfer.getData('text/plain');
+        const element = document.getElementById(droppedId);
+        if (!element) return;
+
+        if (zone.querySelector('.option')) {
+          const existing = zone.querySelector('.option');
+          const qNumber = zone.getAttribute('data-drop');
+          document.getElementById(`options-q${qNumber}`).appendChild(existing);
+        }
+
+        zone.innerHTML = '';
+        zone.appendChild(element);
+      });
+    });
+
+    function checkAnswer(questionNumber) {
+      const question = document.querySelector(`.question[data-question="${questionNumber}"]`);
+      const correctId = question.dataset.correct;
+      const dropzone = question.querySelector('.dropzone');
+      const feedback = document.getElementById(`feedback-${questionNumber}`);
+      const selectedOption = dropzone.querySelector('.option');
+
+      feedback.className = 'feedback';
+      dropzone.classList.remove('correct-filled', 'incorrect-filled');
+
+      if (!selectedOption) {
+        feedback.textContent = 'Debes arrastrar una opción antes de verificar la respuesta.';
+        feedback.classList.add('incorrect');
+        updateScore();
+        return;
+      }
+
+      if (selectedOption.id === correctId) {
+        feedback.textContent = feedbackTexts[questionNumber].correct;
+        feedback.classList.add('correct');
+        dropzone.classList.add('correct-filled');
+      } else {
+        feedback.textContent = feedbackTexts[questionNumber].incorrect;
+        feedback.classList.add('incorrect');
+        dropzone.classList.add('incorrect-filled');
+      }
+
+      updateScore();
+    }
+
+    function resetQuestion(questionNumber) {
+      const question = document.querySelector(`.question[data-question="${questionNumber}"]`);
+      const dropzone = question.querySelector('.dropzone');
+      const feedback = document.getElementById(`feedback-${questionNumber}`);
+      const selectedOption = dropzone.querySelector('.option');
+
+      if (selectedOption) {
+        document.getElementById(`options-q${questionNumber}`).appendChild(selectedOption);
+      }
+
+      dropzone.innerHTML = 'Suelta aquí la respuesta correcta';
+      feedback.className = 'feedback';
+      feedback.textContent = '';
+      dropzone.classList.remove('correct-filled', 'incorrect-filled');
+      updateScore();
+    }
+
+    function updateScore() {
+      let score = 0;
+      document.querySelectorAll('.question').forEach(question => {
+        const correctId = question.dataset.correct;
+        const selected = question.querySelector('.dropzone .option');
+        if (selected && selected.id === correctId) {
+          score++;
+        }
+      });
+      document.getElementById('score').textContent = score;
+    }
+
+    updateDraggables();
+  </script>
+</body>
+
+</html>
