@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const contentArea = document.getElementById("content-area");
-  const contenido   = document.getElementById("contenido");
+  const contenido = document.getElementById("contenido");
 
   // helpers para mostrar/ocultar
-  const showContenido   = () => { contenido.style.display = "block"; contentArea.style.display = "none";  };
-  const showContentArea = () => { contenido.style.display = "none";  contentArea.style.display = "block"; };
+  const showContenido = () => { contenido.style.display = "block"; contentArea.style.display = "none"; };
+  const showContentArea = () => { contenido.style.display = "none"; contentArea.style.display = "block"; };
 
   // --- Función para cargar contenido ---
   async function loadContent(page) {
@@ -22,6 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!response.ok) throw new Error("Error al cargar " + page);
       const html = await response.text();
       contentArea.innerHTML = html;
+
+      // --- Ejecutar scripts en el contenido inyectado ---
+      const scripts = contentArea.querySelectorAll("script");
+      scripts.forEach(oldScript => {
+        const newScript = document.createElement("script");
+        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+        oldScript.parentNode.replaceChild(newScript, oldScript);
+      });
+
     } catch (error) {
       contentArea.innerHTML = `<p class="text-red-500">${error.message}</p>`;
     }
