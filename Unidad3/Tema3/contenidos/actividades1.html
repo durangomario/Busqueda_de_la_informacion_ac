@@ -4,17 +4,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Actividad de aprendizaje: Herramientas digitales para la autoformación</title>
+  <title>Actividad interactiva - Fiabilidad de las fuentes</title>
   <style>
     :root {
-      --bg: #f3f7ff;
+      --bg: #f4f8ff;
       --card: #ffffff;
       --text: #1f2937;
       --muted: #6b7280;
       --primary: #2563eb;
       --primary-soft: #eaf2ff;
-      --success: #16a34a;
-      --warning: #d97706;
+      --success: #166534;
+      --success-bg: #ecfdf5;
+      --warn: #9a3412;
+      --warn-bg: #fff7ed;
       --line: #dbe4f0;
       --shadow: 0 10px 28px rgba(15, 23, 42, .08);
       --radius: 20px;
@@ -28,17 +30,17 @@
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, #edf4ff, #f9fbff);
+      background: linear-gradient(180deg, #eef4ff, #f9fbff);
     }
 
     .wrap {
-      max-width: 1100px;
+      max-width: 1150px;
       margin: 0 auto;
       padding: 24px;
     }
 
     .hero {
-      background: linear-gradient(135deg, #1e3a8a, #2563eb 60%, #60a5fa);
+      background: linear-gradient(135deg, #166534, #2563eb 60%, #22c55e);
       color: #fff;
       border-radius: 28px;
       padding: 28px;
@@ -48,7 +50,7 @@
 
     .hero h1 {
       margin: 0 0 10px;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
     }
 
     .hero p {
@@ -60,7 +62,7 @@
     .card {
       background: var(--card);
       border: 1px solid var(--line);
-      border-radius: var(--radius);
+      border-radius: 22px;
       padding: 22px;
       box-shadow: var(--shadow);
       margin-bottom: 18px;
@@ -85,7 +87,7 @@
 
     h3 {
       margin: 0 0 8px;
-      font-size: 1.05rem
+      font-size: 1.08rem
     }
 
     p {
@@ -93,11 +95,11 @@
     }
 
     .question {
-      margin-top: 16px;
       padding: 18px;
       background: #fbfdff;
       border: 1px solid var(--line);
       border-radius: 18px;
+      margin-top: 14px;
     }
 
     .layout {
@@ -125,7 +127,7 @@
     .drag-item {
       background: #fff;
       border: 1px solid #dbe4f0;
-      border-left: 5px solid #60a5fa;
+      border-left: 5px solid #22c55e;
       border-radius: 14px;
       padding: 12px;
       margin-bottom: 10px;
@@ -135,21 +137,21 @@
     }
 
     .dropzone {
-      min-height: 140px;
+      min-height: 145px;
       background: #fff;
-      border: 2px dashed #b6c7df;
+      border: 2px dashed #86efac;
       border-radius: 16px;
       padding: 12px;
     }
 
     .dropzone.over {
-      background: #eff6ff;
-      border-color: #60a5fa;
+      background: #ecfdf5;
+      border-color: #22c55e;
     }
 
     .dropzone h4 {
       margin: 0 0 8px;
-      color: #1e3a8a;
+      color: #166534;
       font-size: 1rem;
     }
 
@@ -166,6 +168,7 @@
       border-radius: 14px;
       display: none;
       font-weight: 700;
+      line-height: 1.5;
     }
 
     .feedback.show {
@@ -173,15 +176,15 @@
     }
 
     .feedback.ok {
-      background: #ecfdf5;
-      color: #166534;
-      border: 1px solid #bbf7d0
+      background: var(--success-bg);
+      color: var(--success);
+      border: 1px solid #bbf7d0;
     }
 
     .feedback.warn {
-      background: #fff7ed;
-      color: #9a3412;
-      border: 1px solid #fed7aa
+      background: var(--warn-bg);
+      color: var(--warn);
+      border: 1px solid #fed7aa;
     }
 
     .controls {
@@ -207,7 +210,7 @@
 
     .secondary {
       background: #eaf2ff;
-      color: #1e3a8a
+      color: #166534
     }
 
     .result {
@@ -238,7 +241,7 @@
       font-size: .95rem;
     }
 
-    @media (max-width:900px) {
+    @media (max-width:950px) {
       .layout {
         grid-template-columns: 1fr
       }
@@ -253,48 +256,51 @@
 <body>
   <div class="wrap">
     <section class="hero">
-      <h1>Actividad de aprendizaje</h1>
+      <h1>Actividad interactiva: Fiabilidad de las fuentes</h1>
       <p>
-        Arrastra y suelta cada herramienta digital en la categoría correcta. Esta actividad refuerza el tema
-        <strong>Herramientas digitales para la autoformación</strong> en el contexto del desarrollo de software.
+        Arrastra y suelta cada elemento en la categoría correcta. La actividad está diseñada para reforzar
+        los criterios fundamentales para evaluar la fiabilidad de las fuentes de información en contextos
+        académicos y tecnológicos.
       </p>
     </section>
 
     <section class="card">
       <span class="badge">Instrucciones</span>
-      <h2>¿Cómo desarrollar la actividad?</h2>
+      <h2>¿Qué debes hacer?</h2>
       <p>
-        Lee cada pregunta, arrastra los elementos hacia la categoría adecuada y luego presiona
-        <strong>Verificar respuestas</strong>. Al final obtendrás tu puntaje total.
+        En cada pregunta, arrastra los elementos de la columna izquierda hacia la categoría correcta.
+        Luego presiona <strong>Verificar respuestas</strong> para recibir retroalimentación por pregunta.
       </p>
     </section>
 
     <section class="card question" id="q1">
       <span class="badge">Pregunta 1</span>
-      <h3>Clasifica las herramientas según su función principal.</h3>
+      <h3>Relaciona cada descripción con el criterio correcto.</h3>
       <div class="layout">
         <div class="bank" id="bank1">
-          <div class="drag-item" draggable="true" data-match="moocs">Coursera</div>
-          <div class="drag-item" draggable="true" data-match="documentacion">MDN Web Docs</div>
-          <div class="drag-item" draggable="true" data-match="practica">Replit</div>
-          <div class="drag-item" draggable="true" data-match="comunidades">Stack Overflow</div>
+          <div class="drag-item" draggable="true" data-match="autoridad">Reputación y credenciales del autor</div>
+          <div class="drag-item" draggable="true" data-match="actualidad">Fecha reciente de publicación o actualización
+          </div>
+          <div class="drag-item" draggable="true" data-match="evidencia">Uso de citas y referencias verificables</div>
+          <div class="drag-item" draggable="true" data-match="objetividad">Ausencia de sesgos emocionales o comerciales
+          </div>
         </div>
         <div class="zones">
-          <div class="dropzone" data-zone="moocs">
-            <h4>Plataformas de aprendizaje estructurado</h4>
-            <small>Cursos, rutas y certificaciones.</small>
+          <div class="dropzone" data-zone="autoridad">
+            <h4>Autoridad</h4>
+            <small>Evalúa quién produce la información y su experiencia.</small>
           </div>
-          <div class="dropzone" data-zone="documentacion">
-            <h4>Repositorios de conocimiento y documentación</h4>
-            <small>Fuentes fiables y actualizadas.</small>
+          <div class="dropzone" data-zone="actualidad">
+            <h4>Actualidad</h4>
+            <small>Analiza si la información sigue vigente.</small>
           </div>
-          <div class="dropzone" data-zone="practica">
-            <h4>Herramientas de práctica y simulación</h4>
-            <small>Experimentar, ejecutar y validar código.</small>
+          <div class="dropzone" data-zone="evidencia">
+            <h4>Evidencia</h4>
+            <small>Verifica si hay respaldo comprobable.</small>
           </div>
-          <div class="dropzone" data-zone="comunidades">
-            <h4>Comunidades colaborativas</h4>
-            <small>Resolver dudas y compartir soluciones.</small>
+          <div class="dropzone" data-zone="objetividad">
+            <h4>Objetividad</h4>
+            <small>Revisa imparcialidad y propósito de la fuente.</small>
           </div>
         </div>
       </div>
@@ -303,30 +309,31 @@
 
     <section class="card question" id="q2">
       <span class="badge">Pregunta 2</span>
-      <h3>Relaciona cada herramienta con su categoría.</h3>
+      <h3>Ubica cada ejemplo en el criterio que mejor representa.</h3>
       <div class="layout">
         <div class="bank" id="bank2">
-          <div class="drag-item" draggable="true" data-match="organizacion">Notion</div>
-          <div class="drag-item" draggable="true" data-match="portafolios">GitHub Pages</div>
-          <div class="drag-item" draggable="true" data-match="practica">HackerRank</div>
-          <div class="drag-item" draggable="true" data-match="comunidades">Discord técnico</div>
+          <div class="drag-item" draggable="true" data-match="relevancia">Responde directamente a la pregunta de
+            investigación</div>
+          <div class="drag-item" draggable="true" data-match="cobertura">Presenta el tema de forma completa</div>
+          <div class="drag-item" draggable="true" data-match="profundidad">Desarrolla análisis detallado y crítico</div>
+          <div class="drag-item" draggable="true" data-match="objetividad">No intenta persuadir ni vender</div>
         </div>
         <div class="zones">
-          <div class="dropzone" data-zone="organizacion">
-            <h4>Sistemas de organización y gestión del conocimiento</h4>
-            <small>Notas, bases de datos y rutas de estudio.</small>
+          <div class="dropzone" data-zone="relevancia">
+            <h4>Relevancia</h4>
+            <small>Qué tan útil es para el problema o investigación.</small>
           </div>
-          <div class="dropzone" data-zone="portafolios">
-            <h4>Medios para creación de proyectos y portafolios</h4>
-            <small>Publicar evidencias y proyectos.</small>
+          <div class="dropzone" data-zone="cobertura">
+            <h4>Cobertura</h4>
+            <small>Qué tan completo es el tratamiento del tema.</small>
           </div>
-          <div class="dropzone" data-zone="practica">
-            <h4>Herramientas de práctica y simulación</h4>
-            <small>Retos, ejercicios y evaluación automática.</small>
+          <div class="dropzone" data-zone="profundidad">
+            <h4>Profundidad</h4>
+            <small>Nivel de detalle y análisis crítico.</small>
           </div>
-          <div class="dropzone" data-zone="comunidades">
-            <h4>Comunidades colaborativas</h4>
-            <small>Interacción con otros desarrolladores.</small>
+          <div class="dropzone" data-zone="objetividad">
+            <h4>Objetividad</h4>
+            <small>Imparcialidad en la presentación de la información.</small>
           </div>
         </div>
       </div>
@@ -335,30 +342,34 @@
 
     <section class="card question" id="q3">
       <span class="badge">Pregunta 3</span>
-      <h3>Ubica cada recurso según su propósito dentro de la autoformación.</h3>
+      <h3>Clasifica cada acción según el criterio de evaluación que pone en práctica.</h3>
       <div class="layout">
         <div class="bank" id="bank3">
-          <div class="drag-item" draggable="true" data-match="documentacion">Documentación oficial de Python</div>
-          <div class="drag-item" draggable="true" data-match="moocs">edX</div>
-          <div class="drag-item" draggable="true" data-match="organizacion">Obsidian</div>
-          <div class="drag-item" draggable="true" data-match="portafolios">LinkedIn y blogs técnicos</div>
+          <div class="drag-item" draggable="true" data-match="autoridad">Revisar si el autor pertenece a una universidad
+            reconocida</div>
+          <div class="drag-item" draggable="true" data-match="actualidad">Comprobar si el artículo fue actualizado este
+            año</div>
+          <div class="drag-item" draggable="true" data-match="evidencia">Buscar si los datos pueden verificarse
+            externamente</div>
+          <div class="drag-item" draggable="true" data-match="relevancia">Determinar si el contenido sirve para el
+            problema técnico planteado</div>
         </div>
         <div class="zones">
-          <div class="dropzone" data-zone="documentacion">
-            <h4>Referencia técnica actualizada</h4>
-            <small>Sintaxis, funciones y buenas prácticas.</small>
+          <div class="dropzone" data-zone="autoridad">
+            <h4>Autoridad</h4>
+            <small>Prestigio, experiencia y afiliación del autor.</small>
           </div>
-          <div class="dropzone" data-zone="moocs">
-            <h4>Formación guiada</h4>
-            <small>Cursos organizados por niveles y competencias.</small>
+          <div class="dropzone" data-zone="actualidad">
+            <h4>Actualidad</h4>
+            <small>Vigencia temporal de la información.</small>
           </div>
-          <div class="dropzone" data-zone="organizacion">
-            <h4>Gestión personal del aprendizaje</h4>
-            <small>Mapear ideas y construir conocimiento.</small>
+          <div class="dropzone" data-zone="evidencia">
+            <h4>Evidencia</h4>
+            <small>Respaldo mediante datos, citas o referencias.</small>
           </div>
-          <div class="dropzone" data-zone="portafolios">
-            <h4>Difusión de evidencias de aprendizaje</h4>
-            <small>Publicar proyectos y reflexiones.</small>
+          <div class="dropzone" data-zone="relevancia">
+            <h4>Relevancia</h4>
+            <small>Ajuste a las necesidades del tema o investigación.</small>
           </div>
         </div>
       </div>
@@ -367,30 +378,34 @@
 
     <section class="card question" id="q4">
       <span class="badge">Pregunta 4</span>
-      <h3>Asocia la herramienta con la función que cumple.</h3>
+      <h3>Relaciona el riesgo con el criterio que ayuda a prevenirlo.</h3>
       <div class="layout">
         <div class="bank" id="bank4">
-          <div class="drag-item" draggable="true" data-match="practica">CodePen</div>
-          <div class="drag-item" draggable="true" data-match="documentacion">GitHub</div>
-          <div class="drag-item" draggable="true" data-match="organizacion">Evernote</div>
-          <div class="drag-item" draggable="true" data-match="moocs">Udacity</div>
+          <div class="drag-item" draggable="true" data-match="actualidad">Usar información obsoleta en desarrollo de
+            software</div>
+          <div class="drag-item" draggable="true" data-match="objetividad">Aceptar información influenciada por
+            intereses comerciales</div>
+          <div class="drag-item" draggable="true" data-match="evidencia">Basar decisiones en afirmaciones sin sustento
+          </div>
+          <div class="drag-item" draggable="true" data-match="autoridad">Confiar en contenidos creados por personas sin
+            experiencia demostrable</div>
         </div>
         <div class="zones">
-          <div class="dropzone" data-zone="practica">
-            <h4>Entorno de práctica interactiva</h4>
-            <small>Desarrollar y visualizar código de inmediato.</small>
+          <div class="dropzone" data-zone="actualidad">
+            <h4>Actualidad</h4>
+            <small>Evita usar contenidos desactualizados.</small>
           </div>
-          <div class="dropzone" data-zone="documentacion">
-            <h4>Repositorio de código y aprendizaje colaborativo</h4>
-            <small>Explorar proyectos reales y colaborar.</small>
+          <div class="dropzone" data-zone="objetividad">
+            <h4>Objetividad</h4>
+            <small>Reduce sesgos ideológicos o comerciales.</small>
           </div>
-          <div class="dropzone" data-zone="organizacion">
-            <h4>Aplicación para organizar recursos</h4>
-            <small>Registrar notas y materiales de estudio.</small>
+          <div class="dropzone" data-zone="evidencia">
+            <h4>Evidencia</h4>
+            <small>Exige respaldo verificable.</small>
           </div>
-          <div class="dropzone" data-zone="moocs">
-            <h4>Plataforma de cursos tecnológicos</h4>
-            <small>Aprendizaje estructurado y aplicado.</small>
+          <div class="dropzone" data-zone="autoridad">
+            <h4>Autoridad</h4>
+            <small>Valora experiencia y credibilidad del autor.</small>
           </div>
         </div>
       </div>
@@ -399,30 +414,34 @@
 
     <section class="card question" id="q5">
       <span class="badge">Pregunta 5</span>
-      <h3>Clasifica estas herramientas según el uso más adecuado.</h3>
+      <h3>Asocia cada enunciado con el criterio más adecuado.</h3>
       <div class="layout">
         <div class="bank" id="bank5">
-          <div class="drag-item" draggable="true" data-match="comunidades">Reddit tecnológico</div>
-          <div class="drag-item" draggable="true" data-match="portafolios">GitLab Pages</div>
-          <div class="drag-item" draggable="true" data-match="practica">LeetCode</div>
-          <div class="drag-item" draggable="true" data-match="organizacion">Notion</div>
+          <div class="drag-item" draggable="true" data-match="relevancia">La fuente es confiable, pero no responde al
+            tema investigado</div>
+          <div class="drag-item" draggable="true" data-match="profundidad">Explica el tema con análisis especializado y
+            detallado</div>
+          <div class="drag-item" draggable="true" data-match="cobertura">Aborda diferentes dimensiones del problema de
+            forma amplia</div>
+          <div class="drag-item" draggable="true" data-match="objetividad">Presenta la información con lenguaje neutral
+            y sin exageraciones</div>
         </div>
         <div class="zones">
-          <div class="dropzone" data-zone="comunidades">
-            <h4>Espacio de discusión y aprendizaje entre pares</h4>
-            <small>Intercambio de recursos, preguntas y tendencias.</small>
+          <div class="dropzone" data-zone="relevancia">
+            <h4>Relevancia</h4>
+            <small>Útil o no para la necesidad específica.</small>
           </div>
-          <div class="dropzone" data-zone="portafolios">
-            <h4>Publicación de proyectos</h4>
-            <small>Mostrar evidencias y construir portafolio.</small>
+          <div class="dropzone" data-zone="profundidad">
+            <h4>Profundidad</h4>
+            <small>Detalle analítico del contenido.</small>
           </div>
-          <div class="dropzone" data-zone="practica">
-            <h4>Ejercicios algorítmicos</h4>
-            <small>Resolver problemas y mejorar lógica.</small>
+          <div class="dropzone" data-zone="cobertura">
+            <h4>Cobertura</h4>
+            <small>Amplitud con que se trata el tema.</small>
           </div>
-          <div class="dropzone" data-zone="organizacion">
-            <h4>Organización del estudio autónomo</h4>
-            <small>Planificar, registrar y estructurar el aprendizaje.</small>
+          <div class="dropzone" data-zone="objetividad">
+            <h4>Objetividad</h4>
+            <small>Presentación imparcial y equilibrada.</small>
           </div>
         </div>
       </div>
@@ -441,7 +460,7 @@
     </section>
 
     <div class="footer-note">
-      Actividad basada en el tema: herramientas digitales para la autoformación.
+      Actividad interactiva sobre evaluación de la fiabilidad de las fuentes de información.
     </div>
   </div>
 
@@ -478,6 +497,29 @@
       });
     }
 
+    const feedbackTexts = {
+      q1: {
+        ok: "¡Muy bien! Reconoces con precisión los criterios básicos: autoridad, actualidad, evidencia y objetividad.",
+        bad: "Revisa los conceptos base: autoridad se relaciona con credenciales, actualidad con fecha, evidencia con respaldo verificable y objetividad con imparcialidad."
+      },
+      q2: {
+        ok: "¡Correcto! Diferencias adecuadamente relevancia, cobertura, profundidad y objetividad.",
+        bad: "Recuerda: relevancia responde al problema, cobertura al nivel de completitud, profundidad al detalle analítico y objetividad a la neutralidad."
+      },
+      q3: {
+        ok: "Excelente. Identificaste cómo se aplican los criterios en acciones concretas de evaluación.",
+        bad: "Vuelve a revisar cómo cada acción corresponde a un criterio específico de análisis de fuentes."
+      },
+      q4: {
+        ok: "Correcto. Relacionaste cada riesgo con el criterio que ayuda a prevenirlo.",
+        bad: "Piensa en qué criterio evita cada riesgo: actualidad evita obsolescencia, objetividad reduce sesgos, evidencia exige respaldo y autoridad valida experiencia."
+      },
+      q5: {
+        ok: "¡Muy bien! Asociar enunciados con criterios demuestra comprensión aplicada del tema.",
+        bad: "Recuerda: una fuente puede ser confiable pero poco relevante; profundidad implica detalle, cobertura implica amplitud y objetividad implica neutralidad."
+      }
+    };
+
     function evaluateQuestion(qId, fbId) {
       const section = document.getElementById(qId);
       const drops = section.querySelectorAll('.dropzone .drag-item');
@@ -486,7 +528,7 @@
 
       if (drops.length !== totalExpected) {
         fb.className = 'feedback show warn';
-        fb.textContent = 'Completa todos los espacios antes de verificar esta pregunta.';
+        fb.textContent = 'Completa todos los espacios de esta pregunta antes de verificar.';
         return false;
       }
 
@@ -498,11 +540,11 @@
 
       if (ok === totalExpected) {
         fb.className = 'feedback show ok';
-        fb.textContent = '¡Correcto! Clasificaste adecuadamente todas las herramientas.';
+        fb.textContent = feedbackTexts[qId].ok;
         return true;
       } else {
         fb.className = 'feedback show warn';
-        fb.textContent = `Tienes ${ok} de ${totalExpected} relaciones correctas. Revisa y vuelve a intentarlo.`;
+        fb.textContent = feedbackTexts[qId].bad + ' Ahora tienes ' + ok + ' de ' + totalExpected + ' relaciones correctas.';
         return false;
       }
     }
@@ -521,14 +563,14 @@
       const scoreText = document.getElementById('scoreText');
       const scoreMsg = document.getElementById('scoreMsg');
 
-      scoreText.textContent = `Puntaje: ${score} / 5`;
+      scoreText.textContent = 'Puntaje: ' + score + ' / 5';
 
       if (score === 5) {
-        scoreMsg.textContent = '¡Excelente! Reconoces con precisión las herramientas digitales para la autoformación y sus funciones.';
+        scoreMsg.textContent = '¡Excelente! Evalúas la fiabilidad de las fuentes con criterios claros y aplicados.';
       } else if (score >= 3) {
-        scoreMsg.textContent = 'Buen trabajo. Tienes una comprensión adecuada, pero aún puedes reforzar algunas categorías.';
+        scoreMsg.textContent = 'Buen trabajo. Comprendes varios criterios, aunque todavía puedes fortalecer algunos aspectos.';
       } else {
-        scoreMsg.textContent = 'Necesitas repasar el tema. Observa mejor la función de cada herramienta dentro del aprendizaje autónomo.';
+        scoreMsg.textContent = 'Necesitas repasar el tema. Observa con más detalle los criterios de fiabilidad y sus diferencias.';
       }
 
       box.classList.add('show');
